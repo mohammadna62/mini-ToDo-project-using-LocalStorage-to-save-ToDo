@@ -1,13 +1,4 @@
-<!-- 
-  classes:
-     todocard {
-         class: todo & complete, date
-     },
 
-     modal: {
-     class: modal-screen, hidden
-     }
--->
 
 <!DOCTYPE html>
 <html lang="fa-IR" dir="rtl">
@@ -17,7 +8,7 @@
     <title>todo app</title>
     <link rel="stylesheet" href="./public/css/styles.css" />
   </head>
-  <body>
+  <body onload="getDataFromLocalStorage()">
     <div class="wrapper">
       <div class="title">
         <h1> لیست کارها </h1>

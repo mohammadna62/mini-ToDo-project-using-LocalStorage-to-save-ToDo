@@ -5,7 +5,7 @@ const cancelTodoBtn = document.querySelector(".cancel");
 const createTodoBtn = document.querySelector(".create");
 const todoInput = document.querySelector("input");
 const todosContainer = document.querySelector(".todos-container");
-const todos = [];
+let todos = [];
 //!<----------Function Zone--------->
 function showModal() {
   modalScreen.classList.remove("hidden");
@@ -24,17 +24,18 @@ function addTodo() {
   console.log(todos);
   todoInput.value = "";
   saveInToLocalStorage(todos);
-  showTodos()
+  showTodos();
   hideModal();
 }
 
 function showTodos() {
-  todosContainer.innerHTML =""
-  todos.forEach(function (todo) {
+  todosContainer.innerHTML = "";
+  if(todos.length){
+     todos.forEach(function (todo) {
     todosContainer.insertAdjacentHTML(
       "beforeend",
       `
-      <article class="todo">
+      <article  class="todo ${todo.isComplete ? 'complete' : ''}" >
           <div class="todo-data">
             <div class="checkbox">
               <span>
@@ -60,7 +61,7 @@ function showTodos() {
           </div>
 
           <div class="todo-buttons">
-            <button class="delete">حذف</button>
+            <button class="delete" onclick="removeTodo(${todo.id})" >حذف</button>
             <div class="relative">
               <button class="status">وضعیت</button>
               <ui class="status-menu">
@@ -75,11 +76,29 @@ function showTodos() {
   `,
     );
   });
+  }else{
+    todosContainer.innerHTML = `<h1 style = "text-align : center;color : red">محتوایی یافت نشد</h1>`
+  }
+ 
+}
+function removeTodo(todoId){
+ const mainTodoIndex =  todos.findIndex(function(todo){
+    return todo.id=== todoId
+   })
+   todos.splice(mainTodoIndex,1)
+   showTodos()
+   saveInToLocalStorage(todos)
 }
 function saveInToLocalStorage(todosArray) {
   localStorage.setItem("todos", JSON.stringify(todosArray));
 }
-
+function getDataFromLocalStorage() {
+  const localTodos = JSON.parse(localStorage.getItem("todos"));
+  if(localTodos){
+    todos = localTodos
+  }
+  showTodos()
+}
 //?<----------------Event Zone--------------->
 
 openModalBtn.addEventListener("click", showModal);
