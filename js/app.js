@@ -90,6 +90,9 @@ function showTodos(shownTodos) {
               <button class="delete" onclick="removeTodo(${
                 todo.id
               })">حذف</button>
+              <button class="modify" onclick="modifyTodo(${
+                todo.id
+              })">اصلاح</button>
               <button class="complete" onclick="completeTodo(${
                 todo.id
               })">تکمیل</button>
@@ -117,6 +120,17 @@ function completeTodo(todoId) {
   todos.some(function (todo) {
     if (todo.id === todoId) {
       todo.isComplete = true;
+      return true;
+    }
+  });
+
+  saveInToLocalStorage(todos);
+  showTodos(todos);
+}
+function modifyTodo(todoId) {
+  todos.some(function (todo) {
+    if (todo.id === todoId) {
+      todo.isComplete = false;
       return true;
     }
   });
