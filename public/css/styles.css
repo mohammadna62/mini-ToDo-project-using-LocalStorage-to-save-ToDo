@@ -1173,3 +1173,56 @@ input.input {
   visibility: visible;
   opacity: 1;
 }
+
+main.toast:hover .copy-card {
+  left: 1rem;
+}
+.toast {
+  position: fixed;
+  top: 1rem;
+  left: -240px;
+  display: flex;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: rgba(235, 235, 243, 0.5);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  transition-duration: 150ms;
+  .icon {
+    display: flex;
+  }
+  .icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+  .icon {
+    align-items: center;
+  }
+  .icon {
+    justify-content: center;
+  }
+  .icon {
+    border-radius: 0.25rem;
+  }
+  .icon {
+    --tw-bg-opacity: 1;
+    background-color: rgb(5 150 105 / var(--tw-bg-opacity));
+  }
+  .icon {
+    --tw-text-opacity: 1;
+    color: rgb(188 240 218 / var(--tw-text-opacity));
+  }
+}
+
+.toast.visible {
+  left: 1rem;
+}

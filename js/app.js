@@ -7,6 +7,7 @@ const todoInput = document.querySelector(".input");
 const todosContainer = document.querySelector(".todos-container");
 const sortBtns = document.querySelectorAll(".sort-menu button");
 const sortTypeElem = document.querySelector(".sort-type");
+const toast = document.querySelector(".toast");
 
 //*<------------- Initialization Zone ---------------->
 
@@ -50,6 +51,11 @@ function addTodo() {
   saveInToLocalStorage(todos);
   showTodos(todos);
   hideModal();
+  toast.classList.add("visible");
+
+  setTimeout(() => {
+    toast.classList.remove("visible");
+  }, 3000);
 }
 
 function showTodos(shownTodos) {
